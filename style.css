@@ -1,0 +1,85 @@
+/* Add sbody {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2B2B8A;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.container.active {
+    display: block;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background-color: #FFA500;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    margin: 5px 0;
+}
+
+a {
+    color: #FFA500;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}
+
+.subject-icons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.subject-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.study-progress {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.video-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+}
+
+.video-thumbnail {
+    width: calc(33.33% - 10px);
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+tyles here */

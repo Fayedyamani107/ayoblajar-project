@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyoBlajar!</title>
+    <style>
+        /* Gaya CSS dapat ditambahkan di sini */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2B2B8A;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        header {
+            width: 100%;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        header img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .container {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        .active {
+            display: block;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        .button {
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            margin: 5px 0;
+        }
+        .link {
+            color: #FFA500;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .social-buttons {
+            margin-top: 20px;
+        }
+        .social-button {
+            background-color: white;
+            color: #2B2B8A;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+        section {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            display: none; /* hide sections by default */
+        }
+        section.active {
+            display: block; /* show active section */
+        }
+        section img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px 0;
+        }
+        .subject-icons {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+        .subject-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .study-progress {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .video-thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+        }
+        .video-thumbnail {
+            width: calc(33.33% - 10px);
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        /* CSS untuk logo AyoBlajar */
+        .logo-container {
+            width: 200px;
+            height: 100px;
+            background-image: url('gambar.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.container');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Periksa apakah username dan password sesuai
+            if (username === 'fayed' && password === '123') {
+                // Redirect ke halaman setelah login berhasil
+                alert('Login berhasil!');
+                showPage('levelSelectionPage');
+            } else {
+                alert('Username atau password salah. Coba lagi.');
+            }
+        }
+
+        function selectLevel(level) {
+            if (level === 'sd') {
+                showPage('sdPage');
+            } else if (level === 'smp') {
+                showPage('smpPage');
+            } else if (level === 'sma') {
+                showPage('smaPage');
+                showPage('mainMenu');
+            }
+        }
+    </script>
+</head>
+<body onload="showPage('welcomePage')">
+    <header>
+        <!-- Tambahkan logo AyoBlajar di sini -->
+        <div class="logo-container"></div>
+        <h1>AyoBlajar!</h1>
+    </header>
+
+    <!-- Welcome Page -->
+    <div id="welcomePage" class="container active">
+        <h1>Selamat datang di</h1>
+        <h1>AyoBlajar!</h1>
+        <p>Kejarlah kampus impianmu dengan belajar bersama AyoBlajar</p>
+        <div class="buttons">
+            <button class="button" onclick="showPage('loginPage')">Masuk</button>
+            <button class="button" onclick="showPage('registerPage')">Daftar</button>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="container">
+        <h1>AyoBlajar</h1>
+        <input type="text" class="input-field" placeholder="Nama pengguna" id="username">
+        <input type="password" class="input-field" placeholder="Kata sandi" id="password">
+        <button class="button" onclick="login()">Masuk</button>
+        <a href="#" class="link" onclick="showPage('registerPage')">Belum punya akun? Daftar</a>
+        <div class="social-buttons">
+            <button class="social-button">Masuk dengan Google</button>
+            <button class="social-button">Masuk dengan no Hp</button>
+        </div>
+    </div>
+
+    <!-- Level Selection Page -->
+    <div id="levelSelectionPage" class="container">
+        <h1>Pilih Tingkat Pendidikan</h1>
+        <button class="button" onclick="selectLevel('sd')">SD</button>
+        <button class="button" onclick="selectLevel('smp')">SMP</button>
+        <button class="button" onclick="selectLevel('sma')">SMA</button>
+    </div>
+
+    <!-- Main Menu (Hanya muncul setelah memilih SMA) -->
+    <div id="mainMenu" class="container">
+        <header>
+            <h1>AyoBlajar!</h1>
+            <input type="text" placeholder="Cari...">
+            <div class="subject-icons">
+                <div class="subject-icon">Matematika</div>
+                <div class="subject-icon">Ilmu Pengetahuan</div>
+                <div class="subject-icon">IPS</div>
+                <div class="subject-icon">Bahasa</div>
+            </div>
+            <div class="study-progress">
+                Indikator Belajar Mu: Semua Mata Pelajaran
+            </div>
+        </header>
+
+        <!-- Video Thumbnails Section -->
+        <div class="video-thumbnails">
+            <div class="video-thumbnail">
+                <img src="video1.jpg" alt="Video Matematika">
+                <p>Video Belajar Matematika</p>
+                <span>1000x ditonton</span>
+            </div>
+            <div class="video-thumbnail">
+                <img src="video2.jpg" alt="Video Bahasa Indonesia">
+                <p>Video Belajar Bahasa Indonesia</p>
+                <span>800x ditonton</span>
+            </div>
+            <!-- Tambahkan thumbnail video lainnya di sini -->
+        </div>
+    </div>
+
+    <!-- SD Page -->
+    <div id="sdPage" class="container">
+        <section style="background-color: #FFD700;">
+            <h2>SD</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <button class="button">Ayo mulai belajar</button>
+            <img src="male-character-with-glasses.jpg" alt="Male Character With Glasses">
+        </section>
+    </div>
+
+    <!-- SMP Page -->
+    <div id="smpPage" class="container">
+        <section style="background-color: #FFA07A;">
+            <h2>SMP</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <button class="button">Ayo mulai belajar</button>
+            <img src="male-character-holding-books.jpg" alt="Male Character Holding Books">
+        </section>
+    </div>
+
+    <!-- SMA Page -->
+    <div id="smaPage" class="container">
+        <section style="background-color: #90EE90;">
+            <h2>SMA</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+           

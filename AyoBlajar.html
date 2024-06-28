@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyoBlajar!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2B2B8A;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container.active {
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        a {
+            color: #FFA500;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .subject-icons {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .subject-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .study-progress {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .video-thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .video-thumbnail {
+            width: calc(33.33% - 10px);
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Halaman Selamat Datang -->
+    <div class="container active" id="welcomePage">
+        <h1>Selamat datang di</h1>
+        <h1>AyoBlajar!</h1>
+        <p>Kejarlah kampus impianmu dengan belajar bersama AyoBlajar</p>
+        <button onclick="showPage('loginPage')">Masuk</button>
+        <button onclick="showPage('registerPage')">Daftar</button>
+    </div>
+
+    <!-- Halaman Login -->
+    <div class="container" id="loginPage">
+        <h1>Masuk ke AyoBlajar!</h1>
+        <input type="text" id="username" placeholder="Nama pengguna" class="input-field">
+        <input type="password" id="password" placeholder="Kata sandi" class="input-field">
+        <button onclick="login()">Masuk</button>
+        <a href="#" onclick="showPage('registerPage')">Belum punya akun? Daftar</a>
+    </div>
+
+    <!-- Halaman Pendaftaran -->
+    <div class="container" id="registerPage">
+        <h1>Daftar ke AyoBlajar!</h1>
+        <input type="text" id="newUsername" placeholder="Nama pengguna" class="input-field">
+        <input type="password" id="newPassword" placeholder="Kata sandi" class="input-field">
+        <button onclick="register()">Daftar</button>
+    </div>
+
+    <!-- Halaman Level Selection -->
+    <div class="container" id="levelSelectionPage">
+        <h1>Pilih Tingkat Pendidikan</h1>
+        <button onclick="selectLevel('sd')">SD</button>
+        <button onclick="selectLevel('smp')">SMP</button>
+        <button onclick="selectLevel('sma')">SMA</button>
+    </div>
+
+    <!-- Halaman Beranda -->
+    <div class="container" id="mainMenu">
+        <header>
+            <h1>AyoBlajar!</h1>
+            <input type="text" placeholder="Cari..." class="input-field">
+            <div class="subject-icons">
+                <div class="subject-icon">Matematika</div>
+                <div class="subject-icon">Ilmu Pengetahuan</div>
+                <div class="subject-icon">IPS</div>
+                <div class="subject-icon">Bahasa</div>
+            </div>
+            <div class="study-progress">
+                Indikator Belajar Mu: Semua Mata Pelajaran
+            </div>
+        </header>
+        <div class="video-thumbnails">
+            <div class="video-thumbnail">
+                <img src="video1.jpg" alt="Video Matematika">
+                <p>Video Belajar Matematika</p>
+                <span>1000x ditonton</span>
+            </div>
+            <div class="video-thumbnail">
+                <img src="video2.jpg" alt="Video Bahasa Indonesia">
+                <p>Video Belajar Bahasa Indonesia</p>
+                <span>800x ditonton</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let users = [];
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.container');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                showPage('levelSelectionPage');
+            } else {
+                alert('Username atau password salah. Coba lagi.');
+            }
+        }
+
+        function register() {
+            const newUsername = document.getElementById('newUsername').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            if (newUsername && newPassword) {
+                users.push({ username: newUsername, password: newPassword });
+                alert('Pendaftaran berhasil! Silakan masuk.');
+                showPage('loginPage');
+            } else {
+                alert('Nama pengguna dan kata sandi tidak boleh kosong.');
+            }
+        }
+
+        function selectLevel(level) {
+            showPage('mainMenu');
+        }
+    </script>
+</body>
+</html>
